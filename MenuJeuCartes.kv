@@ -1,0 +1,145 @@
+<MenuScreen>:
+    canvas.before:
+        Color:
+            rgba: 154/255, 11/255, 1/255, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    RelativeLayout:
+        size_hint: 1, 0.5  # Prend la moitié supérieure de l'écran
+        pos_hint: {"top": 1}  # Alignement en haut de l'écran
+
+        Image:
+            source: "JeuCarteBackground.jpg"
+            size_hint: None, None
+            size: self.parent.size  # Taille égale à celle du parent
+            allow_stretch: True
+            keep_ratio: False
+
+    RelativeLayout:
+        size_hint: 1, 0.025  # Prend 2.5% de la hauteur de l'écran
+        pos_hint: {"top": 0.975}  # Alignement juste en dessous de l'image précédente
+
+        Image:
+            source: "blanc.jpeg"
+            size_hint: None, None
+            size: self.parent.size  # Taille égale à celle du parent
+            allow_stretch: True
+            keep_ratio: False
+            pos_hint: {'center_x': 0.5, 'center_y': 0.75}  # Centrage de l'image
+
+        Image:
+            source: "ImageJeuDeCarte.png"
+            size_hint: None, None
+            size: self.texture_size  # Taille égale à celle de l'image
+            allow_stretch: False  # Empêche l'étirement de l'image
+            keep_ratio: True
+            pos_hint: {'center_x': 0.5, 'top': 14}  # Centrage de l'image et déplacement vers le haut
+
+    BoxLayout:
+        orientation: "vertical"
+        size_hint: None, None
+        size: self.minimum_size
+        pos_hint: {'center_x': 0.5}
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: 220  # Hauteur ajustée selon vos besoins
+
+            Label:
+                text: "Menu de Cartes et Mémoire"
+                size_hint_y: None
+                height: 200
+                font_size: 60
+                font_name: "static/EBGaramond-SemiBold.ttf"
+                color: 1, 1, 1, 1
+                size_hint_x: 1
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            size_hint: None, None
+            size: self.minimum_size
+            pos_hint: {'center_x': 0.5}
+
+            Button:
+                text: "Jouer"
+                size_hint: (None, None)
+                size: (850, 100)
+                background_color: (0, 0, 0, 0)
+                color: (1, 1, 1, 1)
+                font_name: "static/EBGaramond-Regular.ttf"
+                font_size: 30
+                canvas.before:
+                    Color:
+                        rgba: (0, 0, 0, 1)  # Couleur du bouton
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [30,]  # Rayon des coins arrondis
+                on_press: root.jouer(self)
+
+            Button:
+                text: "Niveaux"
+                size_hint: (None, None)
+                size: (850, 100)
+                background_color: (0, 0, 0, 0)
+                color: (1, 1, 1, 1)
+                font_name: "static/EBGaramond-Regular.ttf"
+                font_size: 30
+                canvas.before:
+                    Color:
+                        rgba: (0, 0, 0, 1)  # Couleur du bouton
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [30,]  # Rayon des coins arrondis
+                on_press: root.choisir_niveau(self)
+
+            Button:
+                text: "Quitter"
+                size_hint: (None, None)
+                size: (850, 100)
+                background_color: (0, 0, 0, 0)
+                color: (1, 1, 1, 1)
+                font_name: "static/EBGaramond-Regular.ttf"
+                font_size: 30
+                canvas.before:
+                    Color:
+                        rgba: (0, 0, 0, 1)  # Couleur du bouton
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [30,]  # Rayon des coins arrondis
+                on_press: root.quitter(self)
+
+            Button:
+                text: "Style de carte"
+                size_hint: None, None
+                size: 100, 50
+                pos_hint: {'top': .5, 'right': .56}
+                background_normal: ""  # Utilise un fond transparent
+                background_color: 0, 0, 0, 0  # Définit la couleur de fond à transparent
+                color: 1, 1, 1, 1  # Définit la couleur du texte à blanc
+                font_name: "static\EBGaramond-Regular.ttf"
+                on_press: root.style(self)
+                font_size: 18
+                canvas.before:
+                    Color:
+                        rgba: (0, 0, 0, 1)  # Couleur du bouton
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [30,]  # Rayon des coins arrondis
+
+<RoundedPopup>:
+    background_color:(0/255, 0/255, 0/255, 1)
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1  # Couleur de fond du popup
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [20, 20, 20, 20]  # Rayon de coin

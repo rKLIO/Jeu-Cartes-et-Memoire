@@ -1,0 +1,51 @@
+<Fenetre>:
+    FloatLayout:
+        BoxLayout:
+            size_hint: None, None
+            size: root.width, root.height
+            pos: 0, 0
+            orientation: "vertical"
+            canvas:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: "JeuCarteBackground.jpg"
+        
+        Button:
+            text: "Quitter"
+            size_hint: None, None
+            size: 50, 50
+            pos_hint: {'top': 1.055, 'right': 2.1}
+            background_normal: ""  # Utilise un fond transparent
+            background_color: 0, 0, 0, 0  # Définit la couleur de fond à transparent
+            color: 1, 1, 1, 1  # Définit la couleur du texte à blanc
+            font_name: "static\EBGaramond-Regular.ttf"
+            on_press: root.bouton_quitter(self)
+
+        Button:
+            text: "Recommencer"
+            size_hint: None, None
+            size: 50, 50
+            pos_hint: {'top': 1.055, 'right': 0.15}
+            background_normal: ""  # Utilise un fond transparent
+            background_color: 0, 0, 0, 0  # Définit la couleur de fond à transparent
+            color: 1, 1, 1, 1  # Définit la couleur du texte à blanc
+            font_name: "static\EBGaramond-Regular.ttf"
+            on_press: root.bouton_recommencer(self)
+            
+<CartesApp>:
+    orientation: "vertical"
+    Fenetre:
+        id: fenetre
+
+<RoundedPopup>:
+    background_color:(0/255, 0/255, 0/255, 1)
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1  # Couleur de fond du popup
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [20, 20, 20, 20]  # Rayon de coin
